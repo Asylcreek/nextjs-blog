@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { GetStaticProps } from "next";
 
 import utilStyles from "../styles/utils.module.css";
 
@@ -8,7 +9,11 @@ import Date from "../components/date";
 
 import { getSortedPostsData } from "../lib/posts";
 
-export default function Home({ allPostsData }) {
+interface HomePropTypes {
+  allPostsData: { id: string; date: string; title: string }[];
+}
+
+export default function Home({ allPostsData }: HomePropTypes) {
   return (
     <Layout home>
       <Head>
@@ -50,10 +55,10 @@ export default function Home({ allPostsData }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
 
   return {
     props: { allPostsData },
   };
-}
+};

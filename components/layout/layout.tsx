@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +9,12 @@ import utilStyles from "../../styles/utils.module.css";
 const name = "Boro Omokugbo Joseph";
 export const siteTitle = "Next.js Sample Website";
 
-export default function Layout({ children, home }) {
+interface LayoutPropTypes {
+  children: ReactNode;
+  home?: Boolean;
+}
+
+export default function Layout({ children, home }: LayoutPropTypes) {
   return (
     <div className={styles.container}>
       <Head>
